@@ -44,23 +44,36 @@ CREATE TABLE customer(
 CREATE TABLE customer_address(
  customer_id,
  customer_address VARCHAR(40)
- FOREIGN KRY (customer_id) REFERENCES customer(customer_id)
+ FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
  );
 
 CREATE TABLE address_status(
- 
+ status_id INT PRIMARY KEY AUTOINCREMENT NOT NULL,
+ status_name VARCHAR(50)
 );
 
 CREATE TABLE address(
- 
+ country_id,
+ address_id INT Primary Key,
+ street VARCHAR (100),
+ city VARCHAR (100),
+ state_name VARCHAR (100),
+ zip_code VARCHAR (100),
+ FOREIGN KEY (country_id) REFERENCES country(country_id)
 );
 
 CREATE TABLE country(
- 
+ country_id INT PRIMARY KEY,
+ country_name VARCHAR(100)
 );
 
-CREATE TABLE cust_order(
- 
+ ---CREATE TABLE cust_order(
+ order_id (Primary Key)
+ customer_id (Foreign Key referencing customer.customer_id)
+ order_date (DATE)
+ shipping_method_id (Foreign Key referencing shipping_method.shipping_method_id)
+ order_status_id (Foreign Key referencing order_status.order_status_id)
+ total_amount (DECIMAL)
 );
 
 CREATE TABLE order_line(

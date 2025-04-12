@@ -67,7 +67,7 @@ CREATE TABLE country(
  country_name VARCHAR(100)
 );
 
- ---CREATE TABLE cust_order(
+CREATE TABLE cust_order(
  order_id (Primary Key)
  customer_id (Foreign Key referencing customer.customer_id)
  order_date (DATE)

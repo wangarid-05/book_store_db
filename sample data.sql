@@ -1,111 +1,109 @@
--- Sample Data Inserts for Classical Literature and Related Tables
-
--- Languages
-INSERT INTO book_language (book_id, language_name) VALUES
-(1, 'Greek'),
-(2, 'Latin'),
-(3, 'Italian'),
-(4, 'French'),
-(5, 'English');
-
--- Authors
-INSERT INTO author (author_name) VALUES
-('Homer'),
-('Virgil'),
+-- Insert Authors
+Use bookstore_data;
+INSERT INTO author (author_name) VALUES 
+('Jane Austen'),
+('Leo Tolstoy'),
+('Victor Hugo'),
 ('Dante Alighieri'),
-('Voltaire'),
-('William Shakespeare');
+('Herman Melville');
 
--- Books
-INSERT INTO book (book_name) VALUES
-('The Iliad'),
-('The Aeneid'),
+-- Insert Books
+INSERT INTO book (book_name) VALUES 
+('Pride and Prejudice'),
+('War and Peace'),
+('Les Misérables'),
 ('The Divine Comedy'),
-('Candide'),
-('Hamlet');
+('Moby-Dick');
 
--- Book-Author Relationships
-INSERT INTO book_author (book_id, author_id) VALUES
+-- Link Books and Authors (book_author)
+INSERT INTO book_author (book_id, author_id) VALUES 
 (1, 1),
 (2, 2),
 (3, 3),
 (4, 4),
 (5, 5);
 
--- Publishers
-INSERT INTO publisher (book_id, publisher_name) VALUES
-(1, 'Penguin Classics'),
-(2, 'Oxford University Press'),
-(3, 'La Nuova Italia'),
-(4, 'Gallimard'),
-(5, 'Cambridge University Press');
+-- Insert Book Languages
+INSERT INTO book_language (book_id, language_name) VALUES 
+(1, 'English'),
+(2, 'Russian'),
+(3, 'French'),
+(4, 'Italian'),
+(5, 'English');
 
--- Countries
+-- Insert Publishers
+INSERT INTO publisher (book_id, publisher_name) VALUES 
+(1, 'T. Egerton'),
+(2, 'The Russian Messenger'),
+(3, 'A. Lacroix, Verboeckhoven & Cie.'),
+(4, 'Johann Numeister and Evangelista Angelini'),
+(5, 'Harper & Brothers');
+
+-- Insert Countries
 INSERT INTO country (country_id, country_name) VALUES
-(1, 'Greece'),
-(2, 'Italy'),
+(1, 'United States'),
+(2, 'United Kingdom'),
 (3, 'France'),
-(4, 'United Kingdom'),
-(5, 'Germany');
+(4, 'Italy'),
+(5, 'Russia');
 
--- Address Statuses
-INSERT INTO address_status (status_name) VALUES
-('Current'),
-('Old');
-
--- Customers
+-- Insert Customers
 INSERT INTO customer (customer_firstName, customer_lastName, customer_age, customer_subscription) VALUES
-('Sophia', 'Athena', 28, 'YES'),
-('Lucius', 'Seneca', 35, 'YES'),
-('Giovanni', 'Medici', 40, 'NO'),
-('Marie', 'Beaumont', 30, 'YES'),
-('Edward', 'Milton', 45, 'NO');
+('Elizabeth', 'Mwangi', 28, 'YES'),
+('KG', 'South Africa', 35, 'YES'),
+('Daisy', 'Wangari', 40, 'NO'),
+('Dante', 'Alighieri', 32, 'YES'),
+('Walter', 'Rickens', 29, 'NO');
 
--- Customer Addresses
+-- Insert Customer Addresses
 INSERT INTO customer_address (customer_id, customer_address) VALUES
-(1, '12 Acropolis Way'),
-(2, '9 Senate Lane'),
-(3, '45 Florence Blvd'),
-(4, '21 Rue de Voltaire'),
-(5, '3 Tudor Street');
+(1, 'Longbourn House, Hertfordshire'),
+(2, 'Nevsky Prospect, Saint Petersburg'),
+(3, 'Rue de l’Homme Armé, Paris'),
+(4, 'Florence Central, Tuscany'),
+(5, 'Nantucket Dock, Massachusetts');
 
--- Addresses
+-- Insert Addresses
 INSERT INTO address (address_id, country_id, street, city, state_name, zip_code) VALUES
-(1, 1, '12 Acropolis Way', 'Athens', 'Attica', '10558'),
-(2, 2, '9 Senate Lane', 'Rome', 'Lazio', '00184'),
-(3, 2, '45 Florence Blvd', 'Florence', 'Tuscany', '50122'),
-(4, 3, '21 Rue de Voltaire', 'Paris', 'Île-de-France', '75011'),
-(5, 4, '3 Tudor Street', 'London', 'England', 'EC4Y');
+(1, 2, 'Longbourn House', 'Hertfordshire', 'England', 'AL5 4DN'),
+(2, 5, 'Nevsky Prospect', 'Saint Petersburg', 'Northwestern', '191025'),
+(3, 3, 'Rue de l’Homme Armé', 'Paris', 'Île-de-France', '75004'),
+(4, 4, 'Florence Central', 'Florence', 'Tuscany', '50122'),
+(5, 1, 'Nantucket Dock', 'Nantucket', 'Massachusetts', '02554');
 
--- Shipping Methods
-INSERT INTO shipping_method (method_name) VALUES
-('Standard'),
-('Express'),
-('International');
-
--- Order Statuses
+-- Insert Order Statuses
 INSERT INTO order_status (status_name) VALUES
 ('Pending'),
 ('Shipped'),
 ('Delivered'),
 ('Cancelled');
 
--- Orders
-INSERT INTO cust_order (customer_id, order_date, total_amount) VALUES
-(1, '2025-04-01', 29.99),
-(2, '2025-04-02', 45.00),
-(3, '2025-04-03', 39.50);
+-- Insert Shipping Methods
+INSERT INTO shipping_method (method_name) VALUES
+('Standard'),
+('Express'),
+('Overnight');
 
--- Order Lines
+-- Insert Orders
+INSERT INTO cust_order (customer_id, order_date, total_amount) VALUES
+(1, '2025-04-01', 19.99),
+(2, '2025-04-02', 25.50),
+(3, '2025-04-03', 30.00),
+(4, '2025-04-04', 22.99),
+(5, '2025-04-05', 18.75);
+
+-- Insert Order Lines
 INSERT INTO order_line (order_id, book_id, quantity) VALUES
 (1, 1, 1),
-(1, 2, 1),
-(2, 3, 2),
-(3, 5, 1);
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 1),
+(5, 5, 1);
 
--- Order History
+-- Insert Order History (1 status per order for simplicity)
 INSERT INTO order_history (order_id, status_id, update_date) VALUES
-(1, 1, '2025-04-01 10:00:00'),
-(1, 2, '2025-04-02 14:30:00'),
-(2, 1, '2025-04-02 08:15:00'),
-(3, 1, '2025-04-03 09:45:00');
+(1, 3, '2025-04-02 10:00:00'), -- Delivered
+(2, 2, '2025-04-03 11:00:00'), -- Shipped
+(3, 1, '2025-04-03 09:00:00'), -- Pending
+(4, 4, '2025-04-04 12:00:00'), -- Cancelled
+(5, 3, '2025-04-06 08:30:00'); -- Delivered

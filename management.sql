@@ -12,6 +12,6 @@ GRANT SELECT ON bookstore_data.cust_order TO 'sales_analyst'@'localhost';
 GRANT SELECT ON bookstore_data.order_line TO 'sales_analyst'@'localhost';
 
 -- shippingrep
-GRANT SELECT, UPDATE ON bookstore_data.order_status TO 'shipping_clerk'@'localhost';
-GRANT SELECT, INSERT ON bookstore_data.order_history TO 'shipping_clerk'@'localhost';
-GRANT SELECT ON bookstore_data.shipping_method TO 'shipping_clerk'@'localhost';
+GRANT SELECT, UPDATE ON bookstore_data.order_status TO 'shipping_rep'@'localhost';
+GRANT SELECT, INSERT ON bookstore_data.order_history TO 'shipping_rep'@'localhost';
+GRANT SELECT ON bookstore_data.shipping_method TO 'shipping_rep'@'localhost';
